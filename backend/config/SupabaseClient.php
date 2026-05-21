@@ -12,8 +12,8 @@ class SupabaseClient
 
     private function __construct()
     {
-        $this->baseUrl = rtrim($_ENV['SUPABASE_URL'], '/') . '/rest/v1';
-        $this->anonKey = $_ENV['SUPABASE_ANON_KEY'];
+        $this->baseUrl = rtrim($_ENV['SUPABASE_URL'] ?? getenv('SUPABASE_URL'), '/') . '/rest/v1';
+        $this->anonKey = $_ENV['SUPABASE_ANON_KEY'] ?? getenv('SUPABASE_ANON_KEY');
     }
 
     public static function getInstance(): self

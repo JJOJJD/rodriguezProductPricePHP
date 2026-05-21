@@ -1,5 +1,10 @@
 export class Product {
-    static apiBase = 'api/products';
+    static get apiBase() {
+        if (window.location.pathname.includes('/frontend')) {
+            return '../backend/public/index.php';
+        }
+        return '/api/products';
+    }
 
     static async getAll() {
         const response = await fetch(this.apiBase);
