@@ -19,15 +19,13 @@ if ($method === 'OPTIONS') {
     exit;
 }
 
-if (strpos($uri, '/api/products') === 0) {
+if ($method === 'GET') {
     $controller = new ProductController();
-    if ($method === 'GET') {
-        $controller->index();
-    } elseif ($method === 'POST') {
-        $controller->store();
-    }
-    exit;
+    $controller->index();
+} elseif ($method === 'POST') {
+    $controller = new ProductController();
+    $controller->store();
+} else {
+    http_response_code(404);
+    echo json_encode(["error" => "Endpoint not found"]);
 }
-
-http_response_code(404);
-echo json_encode(["error" => "Endpoint not found"]);

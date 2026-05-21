@@ -1,5 +1,5 @@
 export class Product {
-    static apiBase = '/api/products';
+    static apiBase = 'api/products';
 
     static async getAll() {
         const response = await fetch(this.apiBase);
