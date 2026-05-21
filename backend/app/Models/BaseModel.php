@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Config\SupabaseClient;
 
-abstract class BaseModel
+abstract class BaseModel implements \JsonSerializable
 {
     protected static string $table    = '';
     protected static array  $fillable = [];
@@ -47,5 +47,9 @@ abstract class BaseModel
             fn(float $carry, array $row) => $carry + (float) ($row[$column] ?? 0),
             0.0
         );
+    }
+    public function jsonSerialize(): array
+    {
+        return $this->attributes;
     }
 }
