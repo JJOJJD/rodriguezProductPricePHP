@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /var/www/html
 
 # Copy backend dependencies and install
-COPY backend/composer.json backend/composer.lock backend/composer.phar ./backend/
-RUN cd backend && php composer.phar install --no-dev --optimize-autoloader
+COPY backend/composer.json backend/composer.lock ./backend/
+RUN cd backend && curl -sS https://getcomposer.org/installer | php && php composer.phar install --no-dev --optimize-autoloader
 
 # Copy backend source
 COPY backend/ ./backend/
